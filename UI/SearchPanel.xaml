@@ -1,0 +1,271 @@
+﻿<UserControl x:Class="TyphoonClient.SearchPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" Height="317" Width="286">
+    <Grid Margin="10,10,22,27">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TabControl x:Name="Tab" HorizontalAlignment="Left" Height="263" Margin="10,10,0,0" VerticalAlignment="Top" Width="244" Background="#FF67B1FB">
+            <TabItem Header="属性查询">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF9FF39F" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="81*"/>
+                        <ColumnDefinition Width="157*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="25,16,0,220" TextWrapping="Wrap" Text="Year:" HorizontalAlignment="Left" Width="40"/>
+                    <ComboBox x:Name="comboAttrYear" Margin="65,16,0,0" HorizontalAlignment="Left" Height="20" Width="74" BorderBrush="#FFF7F5F5" VerticalAlignment="Top" Grid.ColumnSpan="2" SelectedIndex="0">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#FFFBF9F9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                    </ComboBox>
+                    <RadioButton x:Name="radiobtnId" Content="编号 ：" HorizontalAlignment="Left" Height="17" Margin="10,54,0,0" VerticalAlignment="Top" Width="63" RenderTransformOrigin="0.048,0.588" IsChecked="True"/>
+                    <TextBox x:Name="txtId" HorizontalAlignment="Left" Height="17" Margin="47,54,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" TextChanged="id_value_TextChanged"/>
+                    <RadioButton x:Name="radiobtnName" Content="命名：" HorizontalAlignment="Left" Height="17" Margin="10,95,0,0" VerticalAlignment="Top" Width="63"/>
+                    <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="17" Margin="47,95,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" TextChanged="name_value_TextChanged"/>
+                    <RadioButton x:Name="radiobtnStrength" Content="台风强度大于  >" HorizontalAlignment="Left" Height="17" Margin="10,135,0,0" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="txtStrength" HorizontalAlignment="Left" Height="17" Margin="47,135,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="75" Grid.Column="1" TextChanged="str_value_TextChanged" />
+                    <TextBlock HorizontalAlignment="Left" Height="20" Margin="81,157,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="41" Grid.Column="1"><Run Text="("/><Run Text="1-10"/><Run Text=")"/></TextBlock>
+                    <Label Content="年份：" HorizontalAlignment="Left" Margin="20,14,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="时间查询">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF89F9DB" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="23*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="9*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="25,16,0,0" TextWrapping="Wrap" Text="年份：" HorizontalAlignment="Left" Width="40" Height="17" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboTimeYear" Margin="65,16,0,0" HorizontalAlignment="Left" Height="20" Width="74" SelectionChanged="year_SelectionChanged" BorderBrush="#FFF7F5F5" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#FFFBF9F9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                    </ComboBox>
+                    <TextBlock Margin="26,54,0,0" TextWrapping="Wrap" Text="起始日期" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"/>
+                    <TextBlock Margin="26,117,0,0" TextWrapping="Wrap" Text="截止日期" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"/>
+                    <DatePicker x:Name="DPFromDate" HorizontalAlignment="Left" Height="31" Margin="65,81,0,0" VerticalAlignment="Top" Width="122" SelectedDateChanged="from_SelectedDateChanged" Focusable="False" Grid.ColumnSpan="3" />
+                    <DatePicker x:Name="DPToDate" HorizontalAlignment="Left" Height="31" Margin="65,137,0,0" VerticalAlignment="Top" Width="122" Grid.ColumnSpan="3"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="空间查询">
+                <TabItem.Background>
+                    <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                        <GradientStop Color="#FF12A8FD" Offset="1"/>
+                    </LinearGradientBrush>
+                </TabItem.Background>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="69*"/>
+                        <ColumnDefinition Width="7*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Margin="25,16,0,0" TextWrapping="Wrap" Text="年份：" HorizontalAlignment="Left" Width="40" Height="17" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="comboSpaceYear" Margin="65,16,0,0" HorizontalAlignment="Left" Height="20" Width="74" BorderBrush="#FFF7F5F5" VerticalAlignment="Top" SelectedIndex="0">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                                <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                                <GradientStop Color="#FFFBF9F9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                    </ComboBox>
+                    <TextBlock Margin="26,54,0,182" TextWrapping="Wrap" Text="LeftTop" HorizontalAlignment="Left" Width="69"/>
+                    <TextBlock Margin="26,119,0,0" TextWrapping="Wrap" Text="右下角坐标" HorizontalAlignment="Left" Width="69" Height="20" VerticalAlignment="Top" FontSize="13.333"/>
+                    <TextBlock Margin="50,75,0,0" TextWrapping="Wrap" Text="经度：" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"/>
+                    <TextBlock Margin="51,97,0,0" TextWrapping="Wrap" Text="纬度：" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"/>
+                    <TextBlock Margin="51,140,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"><Run Text="经度："/></TextBlock>
+                    <TextBlock Margin="51,165,0,0" TextWrapping="Wrap" Text="纬度：" HorizontalAlignment="Left" Width="69" Height="25" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtTopLeftLong" TextWrapping="Wrap" Text="116" Margin="127,71,0,0" HorizontalAlignment="Left" Width="64" Height="24" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtTopLeftLat" TextWrapping="Wrap" Text="20" Margin="127,100,0,0" HorizontalAlignment="Left" Width="64" Height="24" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDownRightLong" TextWrapping="Wrap" Text="126" Margin="127,135,0,0" HorizontalAlignment="Left" Width="64" Height="24" VerticalAlignment="Top"/>
+                    <TextBox x:Name="txtDownRightLat" TextWrapping="Wrap" Text="10" Margin="127,164,0,0" HorizontalAlignment="Left" Width="65" Height="24" VerticalAlignment="Top"/>
+                    <TextBlock Margin="25,50,0,0" TextWrapping="Wrap" Text="左上角坐标" HorizontalAlignment="Left" Width="69" Height="20" VerticalAlignment="Top" FontSize="13.333"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="时域查询" >
+                <Grid>
+                    <Calendar x:Name="calendar"></Calendar>
+                    <ComboBox x:Name="cmbBoxHour" HorizontalAlignment="Left" Margin="32,166,0,0" VerticalAlignment="Top" Width="55" FontSize="10" SelectedIndex="0">
+                        <ListBoxItem Content="0点"/>
+                        <ListBoxItem Content="1点"/>
+                        <ListBoxItem Content="2点"/>
+                        <ListBoxItem Content="3点"/>
+                        <ListBoxItem Content="4点"/>
+                        <ListBoxItem Content="5点"/>
+                        <ListBoxItem Content="6点"/>
+                        <ListBoxItem Content="7点"/>
+                        <ListBoxItem Content="8点"/>
+                        <ListBoxItem Content="9点"/>
+                        <ListBoxItem Content="10点"/>
+                        <ListBoxItem Content="11点"/>
+                        <ListBoxItem Content="12点"/>
+                        <ListBoxItem Content="13点"/>
+                        <ListBoxItem Content="14点"/>
+                        <ListBoxItem Content="15点"/>
+                        <ListBoxItem Content="16点"/>
+                        <ListBoxItem Content="17点"/>
+                        <ListBoxItem Content="18点"/>
+                        <ListBoxItem Content="19点"/>
+                        <ListBoxItem Content="20点"/>
+                        <ListBoxItem Content="21点"/>
+                        <ListBoxItem Content="22点"/>
+                        <ListBoxItem Content="23点"/>
+                    </ComboBox>
+                    <ComboBox x:Name="cmbBoxMin" HorizontalAlignment="Left" Margin="92,166,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="1.273,0.238" FontSize="10" SelectedIndex="0">
+                        <ListBoxItem Content="00分"/>
+                        <ListBoxItem Content="01分"/>
+                        <ListBoxItem Content="02分"/>
+                        <ListBoxItem Content="03分"/>
+                        <ListBoxItem Content="04分"/>
+                        <ListBoxItem Content="05分"/>
+                        <ListBoxItem Content="06分"/>
+                        <ListBoxItem Content="07分"/>
+                        <ListBoxItem Content="08分"/>
+                        <ListBoxItem Content="09分"/>
+                        <ListBoxItem Content="10分"/>
+                        <ListBoxItem Content="11分"/>
+                        <ListBoxItem Content="12分"/>
+                        <ListBoxItem Content="13分"/>
+                        <ListBoxItem Content="14分"/>
+                        <ListBoxItem Content="15分"/>
+                        <ListBoxItem Content="16分"/>
+                        <ListBoxItem Content="17分"/>
+                        <ListBoxItem Content="18分"/>
+                        <ListBoxItem Content="19分"/>
+                        <ListBoxItem Content="20分"/>
+                        <ListBoxItem Content="21分"/>
+                        <ListBoxItem Content="22分"/>
+                        <ListBoxItem Content="23分"/>
+                        <ListBoxItem Content="24分"/>
+                        <ListBoxItem Content="25分"/>
+                        <ListBoxItem Content="26分"/>
+                        <ListBoxItem Content="27分"/>
+                        <ListBoxItem Content="28分"/>
+                        <ListBoxItem Content="29分"/>
+                        <ListBoxItem Content="30分"/>
+                        <ListBoxItem Content="31分"/>
+                        <ListBoxItem Content="32分"/>
+                        <ListBoxItem Content="33分"/>
+                        <ListBoxItem Content="34分"/>
+                        <ListBoxItem Content="35分"/>
+                        <ListBoxItem Content="36分"/>
+                        <ListBoxItem Content="37分"/>
+                        <ListBoxItem Content="38分"/>
+                        <ListBoxItem Content="39分"/>
+                        <ListBoxItem Content="40分"/>
+                        <ListBoxItem Content="41分"/>
+                        <ListBoxItem Content="42分"/>
+                        <ListBoxItem Content="43分"/>
+                        <ListBoxItem Content="44分"/>
+                        <ListBoxItem Content="45分"/>
+                        <ListBoxItem Content="46分"/>
+                        <ListBoxItem Content="47分"/>
+                        <ListBoxItem Content="48分"/>
+                        <ListBoxItem Content="49分"/>
+                        <ListBoxItem Content="50分"/>
+                        <ListBoxItem Content="51分"/>
+                        <ListBoxItem Content="52分"/>
+                        <ListBoxItem Content="53分"/>
+                        <ListBoxItem Content="54分"/>
+                        <ListBoxItem Content="55分"/>
+                        <ListBoxItem Content="56分"/>
+                        <ListBoxItem Content="57分"/>
+                        <ListBoxItem Content="58分"/>
+                        <ListBoxItem Content="59分"/>
+                    </ComboBox>
+                    <ComboBox x:Name="cmbBoxSec" HorizontalAlignment="Left" Margin="152,166,0,0" VerticalAlignment="Top" Width="55" RenderTransformOrigin="1.273,0.238" FontSize="10" SelectedIndex="0">
+                        <ListBoxItem Content="00秒"/>
+                        <ListBoxItem Content="01秒"/>
+                        <ListBoxItem Content="02秒"/>
+                        <ListBoxItem Content="03秒"/>
+                        <ListBoxItem Content="04秒"/>
+                        <ListBoxItem Content="05秒"/>
+                        <ListBoxItem Content="06秒"/>
+                        <ListBoxItem Content="07秒"/>
+                        <ListBoxItem Content="08秒"/>
+                        <ListBoxItem Content="09秒"/>
+                        <ListBoxItem Content="10秒"/>
+                        <ListBoxItem Content="11秒"/>
+                        <ListBoxItem Content="12秒"/>
+                        <ListBoxItem Content="13秒"/>
+                        <ListBoxItem Content="14秒"/>
+                        <ListBoxItem Content="15秒"/>
+                        <ListBoxItem Content="16秒"/>
+                        <ListBoxItem Content="17秒"/>
+                        <ListBoxItem Content="18秒"/>
+                        <ListBoxItem Content="19秒"/>
+                        <ListBoxItem Content="20秒"/>
+                        <ListBoxItem Content="21秒"/>
+                        <ListBoxItem Content="22秒"/>
+                        <ListBoxItem Content="23秒"/>
+                        <ListBoxItem Content="24秒"/>
+                        <ListBoxItem Content="25秒"/>
+                        <ListBoxItem Content="26秒"/>
+                        <ListBoxItem Content="27秒"/>
+                        <ListBoxItem Content="28秒"/>
+                        <ListBoxItem Content="29秒"/>
+                        <ListBoxItem Content="30秒"/>
+                        <ListBoxItem Content="31秒"/>
+                        <ListBoxItem Content="32秒"/>
+                        <ListBoxItem Content="33秒"/>
+                        <ListBoxItem Content="34秒"/>
+                        <ListBoxItem Content="35秒"/>
+                        <ListBoxItem Content="36秒"/>
+                        <ListBoxItem Content="37秒"/>
+                        <ListBoxItem Content="38秒"/>
+                        <ListBoxItem Content="39秒"/>
+                        <ListBoxItem Content="40秒"/>
+                        <ListBoxItem Content="41秒"/>
+                        <ListBoxItem Content="42秒"/>
+                        <ListBoxItem Content="43秒"/>
+                        <ListBoxItem Content="44秒"/>
+                        <ListBoxItem Content="45秒"/>
+                        <ListBoxItem Content="46秒"/>
+                        <ListBoxItem Content="47秒"/>
+                        <ListBoxItem Content="48秒"/>
+                        <ListBoxItem Content="49秒"/>
+                        <ListBoxItem Content="50秒"/>
+                        <ListBoxItem Content="51秒"/>
+                        <ListBoxItem Content="52秒"/>
+                        <ListBoxItem Content="53秒"/>
+                        <ListBoxItem Content="54秒"/>
+                        <ListBoxItem Content="55秒"/>
+                        <ListBoxItem Content="56秒"/>
+                        <ListBoxItem Content="57秒"/>
+                        <ListBoxItem Content="58秒"/>
+                        <ListBoxItem Content="59秒"/>
+                    </ComboBox>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</UserControl>
